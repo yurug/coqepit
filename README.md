@@ -39,7 +39,7 @@ This will create a folder named `coqepit`.
 mkdir your-name
 ```
 
-- In that folder, create a file named README.md describing a proof
+- In that folder, create a file named `README.md` describing a proof
   you know well and that you want to mechanize within Coq and add
   it to your repository.
 
