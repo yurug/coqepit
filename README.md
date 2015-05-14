@@ -1,5 +1,7 @@
 # EPIT2015: Your research in Coq
 
+Coordinator: Pierre-Marie Pédrot
+
 ## Description
 
 During the last session of the school, participants will work on the
