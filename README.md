@@ -31,9 +31,9 @@ need help, please contact `yrg@pps.univ-paris-diderot.fr`.
 git clone git@github.com:yurug/coqepit.git
 ```
 
-This will create a folder coqepit.git.
+This will create a folder named `coqepit`.
 
-- In a terminal, create a subfolder for your project in the folder `coqepit.git`:
+- In a terminal, create a subfolder for your project in the folder `coqepit`:
 
 ```
 mkdir your-name
