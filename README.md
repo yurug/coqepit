@@ -40,7 +40,7 @@ mkdir your-name
 ```
 
 - In that folder, create a file named `README.md` describing a proof
-  you know well and that you want to mechanize within Coq and add
+  you know well and that you want to mechanize within Coq. Add
   it to your repository.
 
 ```
@@ -53,7 +53,7 @@ git add README.md
 git commit -a -m 'README.md: Update.'
 ```
 
-- and push your changes to the github repository:
+- and finally, push your changes to the github repository:
 
 ```
 git push origin master
