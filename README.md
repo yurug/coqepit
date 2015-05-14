@@ -63,8 +63,8 @@ git push origin master
 
 If you need usage documentation about git, you can try:
 
-[A crash course](https://earlyandoften.wordpress.com/2012/05/03/git-crashcourse/)
-[The official GIT tutorial](http://git-scm.com/docs/gittutorial][The official GIT tutorial)
+- [A crash course](https://earlyandoften.wordpress.com/2012/05/03/git-crashcourse/)
+- [The official GIT tutorial](http://git-scm.com/docs/gittutorial][The official GIT tutorial)
 
 ## Mail-based instructions
 
