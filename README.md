@@ -21,7 +21,7 @@ need help, please contact `yrg@pps.univ-paris-diderot.fr`.
 
 - Create an account on [GitHub](http://github.com) and send your
   login by email to `yrg@pps.univ-paris-diderot.fr` so that we
-  can give your permissions to push on the repository.
+  can give you the permissions to push on the repository.
 
 - Make sure the `git` control version system is installed on your system.
 
