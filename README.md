@@ -19,7 +19,7 @@ If for some reasons, you cannot follow these instructions, look at
 the email-based instructions instead (see the next section). If you
 need help, please contact `yrg@pps.univ-paris-diderot.fr`.
 
-- Create an account on [http://github.com][GitHub] and send your
+- Create an account on [GitHub](http://github.com) and send your
   login by email to `yrg@pps.univ-paris-diderot.fr` so that we
   can give your permissions to push on the repository.
 
@@ -61,8 +61,8 @@ git push origin master
 
 If you need usage documentation about git, you can try:
 
-[https://earlyandoften.wordpress.com/2012/05/03/git-crashcourse/][A crash course]
-[http://git-scm.com/docs/gittutorial][The official GIT tutorial]
+[A crash course](https://earlyandoften.wordpress.com/2012/05/03/git-crashcourse/)
+[The official GIT tutorial](http://git-scm.com/docs/gittutorial][The official GIT tutorial)
 
 ## Mail-based instructions
 
