@@ -52,7 +52,7 @@ git add README.md
 - Commit your file:
 
 ```
-git commit -a -m 'README.md: Update.'
+git commit -m 'README.md: Update.'
 ```
 
 - and finally, push your changes to the github repository:
