@@ -35,10 +35,10 @@ git clone git@github.com:yurug/coqepit.git
 
 This will create a folder named `coqepit`.
 
-- In a terminal, create a subfolder for your project in the folder `coqepit`:
+- In a terminal, create a subfolder for your project in the folder `coqepit/projects`:
 
 ```
-mkdir your-name
+mkdir projects/your-name
 ```
 
 - In that folder, create a file named `README.md` describing a proof
