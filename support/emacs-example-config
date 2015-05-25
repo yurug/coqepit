@@ -1,0 +1,37 @@
+;;; pour faire du Coq
+(setq load-path (cons "/ens/letouzey/ProofGeneral/generic/" load-path))
+(setq load-path (cons "/usr/share/emacs/site-lisp/proofgeneral/generic/" load-path))
+(require 'proof-site nil t)
+(setq proof-three-window-enable t)
+(setq proof-splash-enable nil)
+(setq coq-prog-name "/ens/letouzey/bin/coqtop")
+
+;; les raccourcis qui vont bien:
+
+(add-hook 'proof-mode-hook '(lambda ()
+; commande suivante (lance le process Coq si necessaire)
+ (define-key proof-mode-map [(control meta down)] 'proof-assert-next-command-interactive)
+; undo, revient une commande en arriere
+ (define-key proof-mode-map [(control meta up)] 'proof-undo-last-successful-command)
+; lire le script jusqu'au curseur (lance le process Coq si necessaire)
+ (define-key proof-mode-map [(control meta right)] 'proof-assert-until-point-interactive)
+; undo jusqu'au curseur
+ (define-key proof-mode-map [(control meta left)] 'proof-retract-until-point-interactive)
+; tuer le process Coq, utile car il ne peut y avoir
+; qu'un seul process Coq a la fois (1 process par Emacs)
+ (define-key proof-mode-map [(control meta delete)] 'proof-shell-exit)
+; Pour interrompre le script en cours, le script s'arrete la ou
+; il en etait, cette commande peut compromettre la coherence
+; avec la partie read-only du buffer (apparemment c'est rare)
+ (define-key proof-mode-map [(control meta insert)] 'proof-interrupt-process)
+; reset du script
+ (define-key proof-mode-map [(control meta home)] 'proof-retract-buffer)
+; effectuer le script jusqu'a la fin du buffer
+ (define-key proof-mode-map [(control meta end)] 'proof-process-buffer)
+; pour taper une commande directement, mais sans qu'elle soit ajoutee au script
+ (define-key proof-mode-map [(control meta return)] 'proof-minibuffer-cmd)
+; pour disposer les buffer en trois comme dans coqide
+; (pas utile si proof-three-window-enable)
+(define-key proof-mode-map [(control meta 3)] 'proof-display-three-b)
+(define-key proof-mode-map [(control meta \")] 'proof-display-three-b)
+))
