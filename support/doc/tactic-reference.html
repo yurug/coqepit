@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+</head>
+
+<script language="javascript">
+// We assume that all tactics are described in the section 10 of this manual
+function tacref(idx) {
+    window.open("http://coq.inria.fr/doc/Reference-Manual010.html#@tactic"+idx);
+} 
+</script>
+
+<style>
+body { 
+   counter-reset: section;
+   }
+h2 {
+	color : red;
+	list-style-type: decimal;
+	list-style-position: outside;
+	  }
+h2:before { 
+     content : "counter(section). ";
+	 counter-increment : section;
+	 }	  
+</style>
+<body>
+<h1 align="center">Coq Tactics Quick Reference</h1>
+  
+<h2>1. General goal management </h2>
+<ul>
+  <li><a href="javascript:tacref(108)">auto</a> - try a collection of tactics</li>
+  <li>auto with arith - specifically request arithmetic reasoning</li>
+  <li><a href="javascript:tacref(111)">tauto</a> - intuitionistic propositional tautologies </li>
+  <li><a href="javascript:tacref(112)">intuition</a> - intuitionistic first-order tautologies, breaks the goal. Very useful.
+    <ul>
+      <li>intuition eauto - a variant that also calls eauto.  </li>
+    </ul>
+  </li>
+  <li><a href="javascript:tacref(22)">assert t, assert (H : t)</a> - adds a new hypothesis, and a separate subgoal for proving it</li>
+  <li><a href="javascript:tacref(5)">assumption</a> - proves the goal if it is computationally equal to a hypothesis </li>
+  <li><a href="javascript:tacref(6)">clear H</a> - removes a hypothesis from the context    </li>
+  <li><a href="javascript:tacref(23)">cut</a> - like assert</li>
+  <li><a href="javascript:tacref(36)">simpl [in H]</a> - simplify using computation</li>
+  <li><a href="javascript:tacref(32)">compute [in H]</a> - use computation, more powerful than simpl and may produce larger terms </li>
+  <li><a href="javascript:tacref(38)">unfold id [in H]</a> - unfolds the definition of an indentifier</li>
+  <li>fold id - folds back the definition of an identifier. Useful when you unfolded a recursive function into a fix. </li>
+  <li>set id := e in * - give a name &quot;id&quot; to the expression e</li>
+  <li>clearbody id - clears the body of id (e.g., introduced with set) </li>
+</ul>
+  
+  
+<h2>2. Propositional and equality reasoning </h2>
+
+  <table width="80%" border="1">
+    <tr>
+      <td width="14%"><div align="center"><strong>Connective</strong></div></td>
+      <td width="45%"><div align="center"><strong>Introduction tactics </strong></div></td>
+      <td width="41%"><div align="center"><strong>Elimination tactics </strong></div></td>
+    </tr>
+    <tr>
+      <td>/\ (conjunction) </td>
+      <td><a href="javascript:tacref(44)">split</a> (variant of <a href="javascript:tacref(42)">constructor</a>) </td>
+      <td><a href="javascript:tacref(48)">elim (variant of induction) </a></td>
+    </tr>
+    <tr>
+      <td>\/ (disjunction) </td>
+      <td><a href="javascript:tacref(46)">left, right </a></td>
+      <td><a href="javascript:tacref(48)">elim (variant of induction) </a></td>
+    </tr>
+    <tr>
+      <td>=&gt; (implication) </td>
+      <td><a href="javascript:tacref(10)">intro [a]</a>, <a href="javascript:tacref(11)"> intros [a b H],</a> <a href="javascript:tacref(12)">intros until a</a> </td>
+      <td><a href="javascript:tacref(16)">apply t</a>, <a href="javascript:tacref(17)">apply t with (a := t)</a> </td>
+    </tr>
+    <tr>
+      <td>False</td>
+      <td>&nbsp;</td>
+      <td><a href="javascript:tacref(28)">absurd</a></td>
+    </tr>
+    <tr>
+      <td>True</td>
+      <td><a href="javascript:tacref(42)">constructor [n]</a>, <a href="javascript:tacref(43)">constructor n with (a := t) </a></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>Exists</td>
+      <td><a href="javascript:tacref(45)">exists t </a></td>
+      <td><a href="javascript:tacref(48)">elim (variant of induction) </a></td>
+    </tr>
+    <tr>
+      <td>Forall</td>
+      <td><a href="javascript:tacref(10)">intro [a]</a>, <a href="javascript:tacref(11)"> intros [a b H],</a> <a href="javascript:tacref(12)">intros until a</a></td>
+      <td><a href="javascript:tacref(16)">apply t</a>, <a href="javascript:tacref(17)">apply t with (a := t)</a></td>
+    </tr>
+    <tr>
+      <td>=</td>
+      <td><a href="javascript:tacref(75)">reflexivity</a>, <a href="javascript:tacref(72)">symmetry</a>, <a href="javascript:tacref(74)">transitivity t</a>, <a href="javascript:tacref(117)">congruence</a></td>
+      <td><a href="javascript:tacref(63)">rewrite [<-] t</a>, <a href="javascript:tacref(67)">rewrite [<-] t in H, </a><a href="javascript:tacref(75)">subst</a>, <a href="javascript:tacref(70)">replace</a></td>
+    </tr>
+    <tr>
+      <td>~ (disequality) </td>
+      <td><a href="javascript:tacref(48)">elim (variant of induction) </a></td>
+      <td><a href="javascript:tacref(10)">intro</a></td>
+    </tr>
+  </table><br />
+  
+<h2>3. Arithmetic</h2>
+
+    <ul>
+      <li><a href="javascript:tacref(118)">omega</a> - Presburger arithmetic (propositional formulas, with equalities, inequalities, for nat and Z) </li>
+      <li>auto with arith - </li>
+      <li><a href="javascript:tacref(119)">ring</a> - associative commutative rewriting </li>
+      <li><a href="javascript:tacref(120)">field</a> - equalities in commutative fields (like ring, but with division) </li>
+      <li><a href="javascript:tacref(121)">fourier</a> - linear inequations with propositional structure, on real numbers </li>
+    </ul>
+
+
+<h2>4. Induction</h2>
+<ul>
+  <li>Introduction
+    (prove inductive facts)
+    <ul>
+      <li>apply - treat each constructor as a lemma</li>
+      <li>constructor [n] - name the constructor, or let Coq try them all </li>
+    </ul>
+  </li>
+  <li>Elimination
+    (use inductive assumptions
+    <ul>
+      <li><a href="javascript:tacref(48)">induction t</a> - applies the induction principle for the type of t, generates subgoals as many as there are constructors, and adds the inductive hypotheses in the contexts. If t is an identifier, then it does &quot;intros until t&quot; before. </li>
+      <li><a href="javascript:tacref(53)">destruct t</a> - performs case analysis without recursion (like induction but no induction hypotheses). </li>
+      <li><a href="javascript:tacref(48)">elim t</a> - like induction but does not deal with the hypotheses, and does not  add the induction hypotheses in the context.  </li>
+      <li><a href="javascript:tacref(54)">case t</a> - like destruct but does not deal with the hypotheses </li>
+      <li><a href="javascript:tacref(80)">discriminate [H</a>] - proves any goal from a hypothesis H that asserts the equality of two terms build using different constructors</li>
+      <li><a href="javascript:tacref(82)">injection H</a> - if H states an equality of two terms using the same constructor, then injection adds to the context the equalities implied by the fact that the constructors are injective functions </li>
+      <li><a href="javascript:tacref(87)">inversion H</a> - This is like induction, but pays attention to the particular form of the type of H, and will only consider the cases that could have been used (e.g., a hypothesis of this form could have been proved only with these cases, with these bindings). This has the advantage that it discards quickly some cases. </li>
+    </ul>
+  </li>
+</ul>
+<p>Functional induction is a useful tactic for proofs by induction on the evaluation of a function </p>
+<ul>
+  <li>works better for recursive functions than for definitions. </li>
+  <li>Must make sure that the goal contains &quot;f x1 x2 ...&quot; where xi are variables. </li>
+</ul>
+</body>
+</html>
