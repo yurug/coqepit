@@ -1,0 +1,1 @@
+I would like to use Coq to study Descartes' solutions and demonstrations in geometrical problem solving through algebra. 
