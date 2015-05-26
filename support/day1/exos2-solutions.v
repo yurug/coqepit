@@ -223,6 +223,20 @@ Compute tabulate div2 10.
 
 (* Once again, a tail-rec version is also possible (with no ++) *)
 
+(* We could also reuse earlier pieces such as rev',
+   to obtain a linear tabulate. *)
+
+Fixpoint tabulate_rev {A:Type} (f:nat->A) n :=
+  match n with
+  | 0 => nil
+  | S n => f n :: tabulate_rev f n
+  end.
+
+Definition tabulate' {A:Type} (f:nat->A) n :=
+  rev' (tabulate_rev f n).
+
+Compute tabulate' div2 10.
+
 (* Write a compose function of type :
     forall A B C, (A->B)->(B->C)->(A->C) *)
 
@@ -294,9 +308,11 @@ Compute natiter syracuse' 100 7.
 
 (* To test syracuse conjecture on 1..20 *)
 
-(* A tabulate for positive numbers *)
+(* A tabulate for positive numbers : f 1 :: f 2 :: ... :: f n :: nil *)
 Definition tabulate_pos {A:Type} (f:positive->A)(p:positive) :=
-  tabulate (fun n => f (nat2pos (S n))) (pos2nat p).
+  tabulate' (fun n => f (nat2pos (S n))) (pos2nat p).
+
+Compute tabulate_pos Pos.succ 10.
 
 Compute tabulate_pos (natiter syracuse' 100) 20.
 
