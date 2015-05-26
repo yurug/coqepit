@@ -68,7 +68,7 @@ Lemma contra' : classic -> forall A B:Prop, (A->B) <-> (~B->~A).
 Proof.
 Admitted.
 
-Lemma pierce : classic -> forall A B:Prop, ((A->B)->A)->A.
+Lemma peirce : classic -> forall A B:Prop, ((A->B)->A)->A.
 Proof.
 Admitted.
 
