@@ -1,4 +1,4 @@
-
+ 
 * Formalize the extraction process for Deterministic Residual Structures.
 * Prove that the notion of redex-family it induces is equivalent to the one given by the zig-zag relation.
 
