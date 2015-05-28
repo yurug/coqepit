@@ -15,7 +15,7 @@ Notation convertible a b := (convtest a b (eq_refl a)).
 Ltac forward H :=
   match type of H with
     ?A -> ?B => let H' := fresh in assert (H':A); [|specialize (H H'); clear H']
-                                                                              
+
   end.
 
 Notation they_are_convertible := eq_refl.
@@ -47,7 +47,7 @@ Lemma bool_case (b : bool) : b = true \/ b = false.
 Proof. (* todo *)  Admitted.
 
 (* The [discriminate] tactic allows to prove that different constructors
-   are distinct. Remember that disequality is defined as 
+   are distinct. Remember that disequality is defined as
    [t <> u = (t = u -> False)]. *)
 
 Lemma bool_noconfusion : true <> false.
@@ -89,7 +89,7 @@ Proof. (* todo *) Admitted.
 
 Lemma nat_inj n m : S n = S m -> n = m.
 Proof. (* todo *) Admitted.
-  
+
 (* Using simplification, show the following: *)
 Lemma add_0_n n : 0 + n = n.
 Proof. (* todo *) Admitted.
@@ -112,9 +112,9 @@ Fixpoint mult (n m : nat) : nat :=
 Lemma some_property_on_mult : True.
 Proof. (* todo *) Admitted.
 
-(* * Higher-Order functions: 
+(* * Higher-Order functions:
 
-  Define [iter_fun f n a] that will iterate the function [f] [n] times, starting with 
+  Define [iter_fun f n a] that will iterate the function [f] [n] times, starting with
   seed value [a], by recursion on [n].
  *)
 Fixpoint iter_fun {A : Type} (f : A -> A) (n : nat) (a : A) : A := todo.
@@ -126,11 +126,11 @@ Proof. (* todo *) Admitted.
 Lemma iter_funS {A} (f : A -> A) n a : iter_fun f (S n) a = f (iter_fun f n a).
 Proof. (* todo *) Admitted.
 
-(* Putting it all together: 
+(* Putting it all together:
    Prove that iterating next_day 7 times will give you back the same day:
  *)
 Lemma next_day_invol (d : weekday) : iter_fun next_day 7 d = d.
-Proof. (* todo *) Admitted. 
+Proof. (* todo *) Admitted.
 
 
 (* * Simply Linked Lists: a polymorphic datatype. *)
@@ -177,7 +177,7 @@ Section ListConcatenation.
 
   (** Use induction to show that concatenating a list with the empty
   list gives back the first list. *)
-  
+
   Lemma list_app_nil l : list_app l nil = l.
   Proof. (* todo *) Admitted.
 
@@ -197,7 +197,7 @@ Definition max_nat_opt (n m : option nat) : option nat := todo.
 Lemma max_nat_opt_test1 : max_nat_opt None (Some 1) = Some 1.
 Proof. (* apply they_are_convertible *) Admitted.
 
-(* Now you can define list lookup as a partial function: if the list is not large 
+(* Now you can define list lookup as a partial function: if the list is not large
   enough for the index we return None. Again multi-pattern-matching is useful *)
 
 Section ListLookup.
@@ -240,7 +240,7 @@ Admitted.
 
 Section Forall.
   Context {T : Type}.
-  
+
   Inductive Forall (P : T -> Prop) : list T -> Prop :=
   | forall_nil : Forall P nil
   | forall_cons a l : P a -> Forall P l -> Forall P (a :: l).
@@ -258,7 +258,7 @@ Section Forall.
     (* todo *)
   Admitted.
 
-  (** Show the same property using induction on the first [Forall P l] hypothesis 
+  (** Show the same property using induction on the first [Forall P l] hypothesis
    instead (this is called "rule" induction). How does it compare to
    the previous proof.? *)
   Lemma forall_app' P l l' : Forall P l -> Forall P l' -> Forall P (list_app l l').
@@ -298,7 +298,7 @@ Proof. apply they_are_convertible. Qed.
 (** Define the size function on a tree by recursion. *)
 Fixpoint size (t : tree) : nat := todo.
 
-(** Exercise: Use the search tools to find the lemmas on [max] and [le] 
+(** Exercise: Use the search tools to find the lemmas on [max] and [le]
   necessary to prove the following. *)
 Lemma le_height_size : forall t : tree,
            height t <= size t.
@@ -340,10 +340,10 @@ Proof. (* skip *) Admitted.
 
 (** The function [member x t] computes whether [x] belongs
     to the tree [t]. If uses comparisons with the values
-    stored in the node so that it only needs to traverse 
+    stored in the node so that it only needs to traverse
     one path down the tree. *)
 
-Fixpoint member x t := 
+Fixpoint member x t :=
   match t with
   | Leaf => false
   | Node y t1 t2 =>
@@ -356,7 +356,7 @@ Fixpoint member x t :=
 (** Specification and verification of the [empty] tree, just one Leaf *)
 
 Lemma empty_spec : repr Leaf [].
-Proof. 
+Proof.
   apply repr_leaf.
 Qed.
 
