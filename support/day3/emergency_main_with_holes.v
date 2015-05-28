@@ -60,12 +60,12 @@ Search _ (_.*2).
    (implicit) arguments. *)
 
 About muln2.
-About leq_pmul2r.
+About leq_pmulr.
 
 (* Note that Check also work in this case, but gives much less
   information. *)
 
-(* Prove the following lemma using muln2 and leq_pmul2r. *)
+(* Prove the following lemma using muln2 and leq_pmulr. *)
 Lemma leq_ndouble n : n <= n.*2.
 Proof. admit . Qed.
 
