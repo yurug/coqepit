@@ -1,0 +1,8 @@
+Require Import ssreflect ssrnat ssrbool.
+Require Import bigop Coq.Lists.ListSet.
+
+Theorem amgm (s: set nat) : (\sum_(i in s) i).
+  
+Variables (I: finType) (A: pred I).
+
+Theorem amgm (len:nat) :  (\sum_(i in A) i) >= len * (\prod_(i in A) i).
