@@ -138,10 +138,53 @@ Section ListSetEquality.
 
 End ListSetEquality.
   
-Fixpoint set_concat_map {A B} (Bdeceq : dec_eq B) (f : A -> set B) (x : set A) : set B :=
+Fixpoint set_union_map {A B} (Bdeceq : dec_eq B) (f : A -> set B) (x : set A) : set B :=
   match x with
   | nil       => empty_set B
-  | cons y ys => set_union Bdeceq (f y) (set_concat_map Bdeceq f ys)
+  | cons y ys => set_union Bdeceq (f y) (set_union_map Bdeceq f ys)
   end.
 
 Definition set_filter {A} (p : A -> bool) (x : set A) : set A := List.filter p x.
+
+Fixpoint set_forall {A} (p : A -> bool) (s : set A) : bool :=
+  match s with
+  | nil       => true
+  | cons y ys => p y && set_forall p ys
+  end.
+
+Lemma set_forall_correct : forall {A} (Adeceq : dec_eq A) (p : A -> bool) (s : set A),
+                             set_forall p s = true ->
+                             forall x, set_In x s -> p x = true.
+  intros A Adeceq p s all_s_p x x_in_s.
+  induction s as [ | y ys ].
+  - contradiction.
+  - simpl in all_s_p.
+    apply Bool.Is_true_eq_left, Bool.andb_prop_elim in all_s_p.
+    destruct all_s_p as (p_y, all_ys_p).
+    destruct x_in_s as [y_eq_x | x_in_ys].
+    + apply Bool.Is_true_eq_true.
+      rewrite <- y_eq_x.
+      assumption.
+    + apply IHys.
+      apply Bool.Is_true_eq_true. assumption.
+      assumption.
+Qed.
+
+Lemma set_forall_complete : forall {A} (Adeceq : dec_eq A) (p : A -> bool) (s : set A),
+                               (forall x, set_In x s -> p x = true) ->
+                               set_forall p s = true.
+  intros A Adeceq p s all_s_p.
+  induction s as [ | y ys ].
+  - reflexivity.
+  - simpl.
+    apply Bool.Is_true_eq_true, Bool.andb_prop_intro.
+    simpl in all_s_p.
+    split.
+    + specialize all_s_p with y.
+      apply Bool.Is_true_eq_left, all_s_p.
+      left. reflexivity.
+    + apply Bool.Is_true_eq_left.
+      apply IHys.
+      intros x x_in_ys. specialize all_s_p with x.
+      apply all_s_p. right. assumption.
+Qed.
